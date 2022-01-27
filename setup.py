@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 #coding:utf-8
 import os
-# from geopytool.ImportDependence import *
-# from geopytool.CustomClass import *
+from mass2mole.ImportDependence import *
+from mass2mole.CustomClass import *
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-
-version = 0.1
 here = os.path.abspath(os.path.dirname(__file__))
 
 try:
