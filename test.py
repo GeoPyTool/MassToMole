@@ -42,11 +42,27 @@ for i in item_list:
     clean_item_list.append(item_tmp)
     type_list.append(type_tmp)
 
-print(mass_reciprocal_list,clean_item_list,type_list)
+# print(mass_reciprocal_list,clean_item_list,type_list)
 
-mole_df = raw*mass_reciprocal_list
-mole_df.columns = clean_item_list
+mole_df = raw * type_list # 将数据从不同尺度质量分数统一化到总和设为1下的质量分数
+mole_df = mole_df * mass_reciprocal_list # 将数据从质量分数换算到摩尔数
+mole_df.columns = clean_item_list # 重新设置各列标签
 
-mole_sum_list = mole_df.sum(axis = 1).tolist()
+mole_sum_list = mole_df.sum(axis = 1).tolist() # 总摩尔数
+def reverse(n): return 1.0/n
+x=list(map(reverse,mole_sum_list))
 
-print(mole_df,mole_sum_list)
+# mole_df = mole_df * x # 换算成摩尔分数
+
+# print(raw,'\n', type_list,'\n',mole_df,'\n',x)
+
+values_raw = np.matrix(mole_df.values)
+sum_r = np.matrix(x).T
+result = np.multiply( values_raw , sum_r)
+print(np.shape(mole_df),np.shape(result))
+
+result_df = pd.DataFrame(result)
+result_df.columns = clean_item_list # 重新设置各列标签
+result_df['Label'] = raw.index.tolist() # 添加 Label 这一列
+result_df = result_df.set_index('Label') # Label 这一列是用来做样品备注的，就当作索引了
+print(result_df)
