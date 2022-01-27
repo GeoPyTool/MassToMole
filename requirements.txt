@@ -1,0 +1,7 @@
+# This is an implicit value, here for clarity
+--index https://pypi.python.org/simple/
+
+
+pandas>=0.24.1
+chempy>=0.8.1
+PyQt5>=5.12
