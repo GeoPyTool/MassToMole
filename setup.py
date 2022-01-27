@@ -17,16 +17,16 @@ except:
 
 
 
-setup(name='geopytool',
+setup(name='mass2mole',
       version= version,
       description='A tool to calculate from mass percetange to mole percentage.',
       longdescription=README,
       author='cycleuser',
       author_email='cycleuser@cycleuser.org',
       url='https://github.com/cycleuser/MassToMole',
-      packages=['geopytool'],
+      packages=['mass2mole'],
       package_data={
-          'geopytool': ['*.py','*.txt','*.png','*.qm','*.ttf','*.ini','*.md'],},
+          'mass2mole': ['*.py','*.txt','*.png','*.qm','*.ttf','*.ini','*.md'],},
       include_package_data=True,
       install_requires=[
                         'pandas',
