@@ -153,6 +153,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionQuit)
 
+
         self.menuHelp.addAction(self.actionWeb)
         self.menuHelp.addAction(self.actionGoGithub)
         self.menuHelp.addAction(self.actionVersionCheck)
@@ -361,45 +362,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             reply = QMessageBox.information(self, _translate('MainWindow', 'Warning'), _translate('MainWindow',
                                                                                                   'Your Data mismatch this Function.\n Error infor is:') + text)
 
-    def Magic(self):
-
-        if (len(self.model._df) <= 0):
-            self.getDataFile()
-            pass
-
-        if (len(self.model._df) > 0):
-            #self.model._df = self.model._df.fillna(0)
-            self.model = PandasModel(self.model._df)
-            self.tableView.setModel(self.model)
-            reply = QMessageBox.information(self, _translate('MainWindow', 'Ready'),
-                                            _translate('MainWindow', 'Mole/% has been calculated.'))
-
     def clearDataFile(self):
         self.raw = pd.DataFrame()
         self.model = PandasModel(self.raw)
         self.tableView.setModel(self.model)
-
-    def getDataFiles(self, limit=6):
-        print('get Multiple Data Files  called \n')
-        DataFilesInput, filetype = QFileDialog.getOpenFileNames(self, u'Choose Data File',
-                                                                '~/',
-                                                                'CSV Files (*.csv);;Excel Files (*.xlsx);;Excel 2003 Files (*.xls)')  # 设置文件扩展名过滤,注意用双分号间隔
-        # print(DataFileInput,filetype)
-
-        DataFramesList = []
-
-        if len(DataFilesInput) >= 1:
-            for i in range(len(DataFilesInput)):
-                if i < limit:
-                    if ('csv' in DataFilesInput[i]):
-                        DataFramesList.append(pd.read_csv(DataFilesInput[i], engine='python'))
-                    elif ('xls' in DataFilesInput[i]):
-                        DataFramesList.append(pd.read_excel(DataFilesInput[i]),engine='openpyxl')
-                else:
-                    # self.ErrorEvent(text='You can only open up to 6 Data Files at a time.')
-                    pass
-
-        return (DataFramesList, DataFilesInput)
 
     def getDataFile(self, CleanOrNot=True):
         _translate = QtCore.QCoreApplication.translate
@@ -476,6 +442,21 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
                 dftosave.to_excel(DataFileOutput, encoding='utf-8')
 
+
+    def Magic(self):
+
+        if (len(self.model._df) <= 0):
+            self.getDataFile()
+            pass
+
+        if (len(self.model._df) > 0):
+            #self.model._df = self.model._df.fillna(0)
+
+
+            self.model = PandasModel(self.model._df)
+            self.tableView.setModel(self.model)
+            reply = QMessageBox.information(self, _translate('MainWindow', 'Ready'),
+                                            _translate('MainWindow', 'Mole/% has been calculated.'))
 
 def main():
     import sys
