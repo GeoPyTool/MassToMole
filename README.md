@@ -10,5 +10,5 @@ pip install mass2mole
 ## Usage
 
 ```Bash
-python -c "import geopytool;geopytool.main()"
+python -c "import mass2mole; mass2mole.main()"
 ```
