@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+mass2mole/CustomClass.py
+mass2mole/ImportDependence.py
+mass2mole/__init__.py
+mass2mole/setup.py
+mass2mole.egg-info/PKG-INFO
+mass2mole.egg-info/SOURCES.txt
+mass2mole.egg-info/dependency_links.txt
+mass2mole.egg-info/requires.txt
+mass2mole.egg-info/top_level.txt
