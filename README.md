@@ -4,7 +4,7 @@ A tool to calculate from mass percetange to mole percentage.
 ## Installation
 
 ```Bash
-pip install mass2mole
+pip install mass2mole -i https://pypi.org/simple
 ```
 
 ## Usage
