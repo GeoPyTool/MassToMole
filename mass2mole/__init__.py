@@ -114,9 +114,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.actionClose.setObjectName('actionClose')
         self.actionClose.setShortcut('Ctrl+N')
 
-        self.actionFillNaN = QtWidgets.QAction(QIcon(LocationOfMySelf + '/FillNaN.png'), u'Set', self)
-        self.actionFillNaN.setObjectName('actionFillNaN')
-        self.actionFillNaN.setShortcut('Ctrl+Alt+F')
+        self.actionMagic = QtWidgets.QAction(QIcon(LocationOfMySelf + '/Magic.png'), u'Set', self)
+        self.actionMagic.setObjectName('actionMagic')
+        self.actionMagic.setShortcut('Ctrl+M')
 
         self.actionSave = QtWidgets.QAction(QIcon(LocationOfMySelf + '/save.png'), u'Save', self)
         self.actionSave.setObjectName('actionSave')
@@ -149,7 +149,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionClose)
-        self.menuFile.addAction(self.actionFillNaN)
+        self.menuFile.addAction(self.actionMagic)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionQuit)
 
@@ -177,7 +177,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.actionOpen.triggered.connect(self.getDataFile)
         self.actionClose.triggered.connect(self.clearDataFile)
-        self.actionFillNaN.triggered.connect(self.FillNaN)
+        self.actionMagic.triggered.connect(self.Magic)
         self.actionSave.triggered.connect(self.saveDataFile)
         self.actionQuit.triggered.connect(QApplication.quit)
 
@@ -205,7 +205,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.menuLanguage.setTitle(_translate('MainWindow', u'Language'))
         self.actionOpen.setText(_translate('MainWindow', u'Open Data'))
         self.actionClose.setText(_translate('MainWindow', u'Close Data'))
-        self.actionFillNaN.setText(_translate('MainWindow', u'Fill Blank with 0'))
+        self.actionMagic.setText(_translate('MainWindow', u'Calculate'))
         self.actionSave.setText(_translate('MainWindow', u'Save Data'))
         self.actionQuit.setText(_translate('MainWindow', u'Quit App'))
 
@@ -361,18 +361,18 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             reply = QMessageBox.information(self, _translate('MainWindow', 'Warning'), _translate('MainWindow',
                                                                                                   'Your Data mismatch this Function.\n Error infor is:') + text)
 
-    def FillNaN(self):
+    def Magic(self):
 
         if (len(self.model._df) <= 0):
             self.getDataFile()
             pass
 
         if (len(self.model._df) > 0):
-            self.model._df = self.model._df.fillna(0)
+            #self.model._df = self.model._df.fillna(0)
             self.model = PandasModel(self.model._df)
             self.tableView.setModel(self.model)
             reply = QMessageBox.information(self, _translate('MainWindow', 'Ready'),
-                                            _translate('MainWindow', 'Blanks are now filled with 0s.'))
+                                            _translate('MainWindow', 'Mole/% has been calculated.'))
 
     def clearDataFile(self):
         self.raw = pd.DataFrame()
