@@ -1,5 +1,6 @@
 #coding:utf-8
 import webbrowser, sys, os , re, requests, chempy
+from chempy import Substance
 import pandas as pd
 import numpy as np
 from PyQt5.QtWidgets import QMainWindow, QMenu, QSizePolicy, QMessageBox, QWidget, QFileDialog, QAction, QTextEdit, QLineEdit, QApplication, QPushButton, QSlider, QLabel, QHBoxLayout, QVBoxLayout, QProxyStyle, QStyle, qApp, QCheckBox
